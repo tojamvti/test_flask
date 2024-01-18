@@ -11,6 +11,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 recipes = [
     {"title": "Pasta", "ingredients": "Water, Salt, Pasta", "instructions": "Boil water, add salt, cook pasta."},
     {"title": "Salad", "ingredients": "Lettuce, Tomatoes, Cucumber", "instructions": "Chop vegetables, mix in a bowl."},
+    {"title": "Pizza", "ingredients": "Dough, Tomatoes, Cucumber", "instructions": "Chop vegetables, mix in a bowl."},
 ]
 
 class RecipeForm(FlaskForm):
