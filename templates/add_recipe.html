@@ -7,22 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Recipe</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 <body>
-    <h1>Add Recipe</h1>
-    <form method="post">
-        {{ form.csrf_token }}
-        <label for="title">Title:</label>
-        {{ form.title }}
-        <br>
-        <label for="ingredients">Ingredients:</label>
-        {{ form.ingredients }}
-        <br>
-        <label for="instructions">Instructions:</label>
-        {{ form.instructions }}
-        <br>
-        <input type="submit" value="Add Recipe">
-    </form>
+    <div class="container">
+        <h1>Add Recipe</h1>
+        <form method="post" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <label for="title">Title:</label>
+            {{ form.title }}
+            <br>
+            <label for="ingredients">Ingredients:</label>
+            {{ form.ingredients }}
+            <br>
+            <label for="instructions">Instructions:</label>
+            {{ form.instructions }}
+            <br>
+            <label for="image">Upload Image:</label>
+            {{ form.image }}
+            <br>
+            <input type="submit" value="Add Recipe">
+        </form>
+        <a href="{{ url_for('recipe_list') }}" class="back-to-list-button">Back to Recipe List</a>
+    </div>
 </body>
 </html>
