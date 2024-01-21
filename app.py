@@ -1,8 +1,10 @@
 # app.py
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, g
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FileField
 from wtforms.validators import InputRequired
+import sqlite3
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -20,7 +22,11 @@ class RecipeForm(FlaskForm):
     instructions = TextAreaField('Instructions', validators=[InputRequired()])
     image = FileField('Upload Image')
 
-@app.route('/')
+@app.route("/")
+def index():
+    return render_template('index.html')
+
+@app.route('/recipe_list')
 def recipe_list():
     return render_template('recipe_list.html', recipes=recipes)
 
@@ -46,9 +52,26 @@ def add_recipe():
     return render_template('add_recipe.html', form=form)
 
 def save_image(image, title):
+
     image_path = f"static/images/{title.lower().replace(' ', '_')}.jpg"
     image.save(image_path)
     return image_path
+
+@app.route('/best_recipe')
+def best_recipe():
+    return render_template('best_recipe.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

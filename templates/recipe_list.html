@@ -1,17 +1,14 @@
-<!-- templates/recipe_list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Book</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+    Recipe List
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <h1>Recipe List</h1>
-        <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+        <HR>
+        <a href="{{ url_for('add_recipe') }}" class="btn btn-success">Add recipe</a>
         <div class="recipe-container">
             {% for recipe in recipes %}
                 <div class="recipe-card">
@@ -26,8 +23,6 @@
                     </div><div class="recipe-container">
                 {% endif %}
             {% endfor %}
-        </div>
-        
+        </div> 
     </div>
-</body>
-</html>
+{% endblock %}

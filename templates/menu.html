@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Recipe Book</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('best_recipe') }}">Best Recipe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('recipe_list') }}">Recipe List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_recipe') }}">Add recipe</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Others
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{ url_for('contact') }}">Contact</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('about') }}">About</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('faq') }}">FAQ</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
