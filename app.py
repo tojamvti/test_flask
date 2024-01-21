@@ -62,8 +62,13 @@ def add_recipe():
         if form.image.data:
             image_path = save_image(form.image.data, title)
 
-        new_recipe = {"title": title, "ingredients": ingredients, "instructions": instructions, "image_path": image_path}
-        recipes.append(new_recipe)
+        db = get_db()
+        sql_command = 'insert into recipies(title, ingredients, instructions) values(?, ?, ?)'
+        db.execute(sql_command, [title, ingredients, instructions])
+        db.commit()
+
+        #new_recipe = {"title": title, "ingredients": ingredients, "instructions": instructions, "image_path": image_path}
+        #recipes.append(new_recipe)
 
         return redirect(url_for('recipe_list'))
 
