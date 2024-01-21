@@ -10,18 +10,10 @@
         <HR>
         <form method="post" enctype="multipart/form-data">
             {{ form.csrf_token }}
-            <label for="title">Title:</label>
-            {{ form.title }}
-            <br>
-            <label for="ingredients">Ingredients:</label>
-            {{ form.ingredients }}
-            <br>
-            <label for="instructions">Instructions:</label>
-            {{ form.instructions }}
-            <br>
-            <label for="image">Upload Image:</label>
-            {{ form.image }}
-            <br>
+            <label for="title">Title:</label>   {{ form.title }} <br/>
+            <label for="ingredients">Ingredients:</label>   {{ form.ingredients }} <br/>
+            <label for="instructions">Instructions:</label>    {{ form.instructions }} <br/>
+            <label for="image">Upload Image:</label>    {{ form.image }} <br/>
             <input type="submit" value="Add Recipe">
         </form>
         <a href="{{ url_for('recipe_list') }}" class="back-to-list-button">Back to Recipe List</a>

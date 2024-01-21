@@ -5,9 +5,27 @@ from wtforms import StringField, TextAreaField, FileField
 from wtforms.validators import InputRequired
 import sqlite3
 
+app_info = {
+    'db_file' : r"E:\Flask\test_flask\data\recipies.db"
+}
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
+
+def get_db():
+
+    if not hasattr(g, 'sqlite_db'):
+        conn = sqlite3.connect(app_info["db_file"])
+        conn.row_factory = sqlite3.Row
+        g.sqlite_db = conn
+    return g.sqlite_db
+
+@app.teardown_appcontext
+def close_db(error):
+
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()
+
 
 # Dummy data for recipes
 recipes = [
@@ -17,9 +35,9 @@ recipes = [
 ]
 
 class RecipeForm(FlaskForm):
-    title = StringField('Title', validators=[InputRequired()])
-    ingredients = TextAreaField('Ingredients', validators=[InputRequired()])
-    instructions = TextAreaField('Instructions', validators=[InputRequired()])
+    title = StringField('Title', validators=[InputRequired("Enter recipe title")])
+    ingredients = TextAreaField('Ingredients', validators=[InputRequired("Enter ingredients")])
+    instructions = TextAreaField('Instructions', validators=[InputRequired("Enter instrucions")])
     image = FileField('Upload Image')
 
 @app.route("/")
