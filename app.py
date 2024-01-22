@@ -42,7 +42,7 @@ class RecipeForm(FlaskForm):
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index.html', active_menu='')
 
 @app.route('/recipe_list')
 def recipe_list():
@@ -51,7 +51,7 @@ def recipe_list():
     cur = db.execute(sql_command)
     recipies = cur.fetchall()
 
-    return render_template('recipe_list.html', recipies=recipies)
+    return render_template('recipe_list.html', active_menu='recipe_list', recipies=recipies)
 
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
@@ -77,7 +77,7 @@ def add_recipe():
 
         return redirect(url_for('recipe_list'))
 
-    return render_template('add_recipe.html', form=form)
+    return render_template('add_recipe.html', active_menu='add_recipe', form=form)
 
 def save_image(image, title):
 
@@ -87,19 +87,19 @@ def save_image(image, title):
 
 @app.route('/best_recipe')
 def best_recipe():
-    return render_template('best_recipe.html')
+    return render_template('best_recipe.html', active_menu='best_recipe')
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('contact.html', active_menu='other')
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', active_menu='other')
 
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')
+    return render_template('faq.html', active_menu='other')
 
 if __name__ == '__main__':
     app.run(debug=True)
