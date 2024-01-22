@@ -15,16 +15,23 @@
             </tr>
         </thead>
         <tbody>
-            {% for recipe in recipies %}
             <tr>
-                <th scope="row">{{ recipe.title }}</th>
-                <td>{{ recipe.ingredients }}</td>
-                <td>{{ recipe.instructions }}</td>
+                <th scope="row">PIZZA</th>
+                <td>For base: 300g Flour, 1tsp Instant yeast, 1tsp Salt, 1tsp Olive Olive<br>
+                    For tomato sauce: 100ml Passata, handful of Fresh basil, 1 clove of Garlic<br>
+                    For toppings: 1kg Pinapple, 100g ham, 200g Mozzarella cheese
+                </td>
+                <td>
+                    Step 1: Mix ingredients for base, and leave.<br>
+                    Step 2: Mix ingredients for sauce.<br>
+                    Step 3: Roll out the dough.<br>
+                    Step 4: Add sauce and toppings.<br>
+                    Step 5: Bake at 220C for 8-10mins.
+                </td>
                 <td>
                     <a href="#" class="btn btn-primary btn-sm" role="button">Show Photo</a>
                 </td>
             </tr>
-            {% endfor %}
         </tbody>
     </table>
 </div>
