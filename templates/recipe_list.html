@@ -5,6 +5,41 @@
 {% endblock %}
 
 {% block content %}
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="True">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">This Recipe will be deleted:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="idDeleteMoadlBody">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+            <form action="" method="GET" id="confirmDeleteForm"
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //aplied to all elements with ".delete-cofrim"
+        $('.delete-confirm').click(function (){
+            var desc = $(this).attr('data=desc');
+            var url = $(this).attr('data-url');
+            $('#idDeleteModalBody').text(desc);
+            $("#confirmDeleteForm").attr("action", url);
+        });
+    });
+</script>
+
+
 <div class="container">
     <table class="table">
         <thead>
@@ -25,7 +60,13 @@
                 <td>
                     <a href="#" class="btn btn-primary btn-sm" role="button">Show Photo</a>
                     <a href="#" class="btn btn-success btn-sm" role="button">Edit</a>
-                    <a href="{{ url_for('recipe_delete', recipe_id = recipe.id) }}" class="btn btn-danger btn-sm" role="button">Delete</a>
+                    <a type="button" class="btn btn-danger btn-sm delete-confirm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                        data-desc="{{ 'Delete recipe for {}?'.format(recipe.title) }}"
+                        data-url="{{ url_for('recipe_delete', recipe_id = recipe.id) }}"
+                        >
+                        Delete
+                    </a>
+                      
                 </td>
             </tr>
             {% endfor %}
