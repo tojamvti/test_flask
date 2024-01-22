@@ -44,7 +44,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Ingredients</th>
                 <th scope="col">Instructions</th>
@@ -53,8 +52,7 @@
         <tbody>
             {% for recipe in recipies %}
             <tr>
-                <th scope="row">{{ recipe.id }}</th>
-                <td>{{ recipe.title }}</td>
+                <th scope="row">{{ recipe.title }}</th>
                 <td>{{ recipe.ingredients }}</td>
                 <td>{{ recipe.instructions }}</td>
                 <td>
