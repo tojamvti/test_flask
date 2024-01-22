@@ -1,0 +1,19 @@
+/* static/add_recipe_style.css */
+/* Styles for the Add Recipe page */
+
+.container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+}
+
+form {
+    margin-top: 20px;
+}
+
+h1{
+    font-size: 10px;
+}

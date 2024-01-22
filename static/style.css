@@ -1,7 +1,7 @@
 /* static/style.css */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background-color: #943e3e;
     margin: 0;
     padding: 0;
 }
@@ -74,3 +74,4 @@ a {
     border-radius: 5px;
     cursor: pointer;
 }
+

@@ -1,7 +1,14 @@
+<!-- templates/add_recipe.html -->
 {% extends "base.html" %}
 
 {% block title %}
     Add Recipe
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_recipe_style.css') }}">
 {% endblock %}
 
 {% block content %}

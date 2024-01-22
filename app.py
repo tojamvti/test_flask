@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, g
+from flask import Flask, render_template, request, redirect, url_for,g
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FileField
 from wtforms.validators import InputRequired
 import sqlite3
 
 app_info = {
-    'db_file' : r"E:\Flask\test_flask\data\recipies.db"
+    'db_file' : r"D:\Studia\Python\test_flask\data\recipies.db"
 }
 
 app = Flask(__name__)
@@ -76,9 +76,26 @@ def save_image(image, title):
 def best_recipe():
     return render_template('best_recipe.html', active_menu='best_recipe')
 
-@app.route('/contact')
+
+
+
+class ContactForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired()])
+    email = StringField('Email', validators=[InputRequired()])
+    message = TextAreaField('Message', validators=[InputRequired()])
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', active_menu='other')
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        # Handle the form submission logic here
+        # Access form data using form.name.data, form.email.data, form.message.data
+        # Perform any necessary actions with the form data
+
+        return render_template('thank_you.html')
+
+    return render_template('contact.html', form=form)
 
 @app.route('/about')
 def about():
@@ -97,6 +114,8 @@ def recipe_delete(recipe_id):
     db.commit()
 
     return redirect(url_for('recipe_list'))
+
+
 
 
 if __name__ == '__main__':
