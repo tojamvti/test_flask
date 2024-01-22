@@ -5,7 +5,7 @@ from wtforms.validators import InputRequired
 import sqlite3
 
 app_info = {
-    'db_file' : r"D:\Studia\Python\test_flask\data\recipies.db"
+    'db_file' : r"E:\Flask\test_flask\data\recipies.db"
 }
 
 app = Flask(__name__)
