@@ -46,7 +46,12 @@ def index():
 
 @app.route('/recipe_list')
 def recipe_list():
-    return render_template('recipe_list.html', recipes=recipes)
+    db = get_db()
+    sql_command = 'select id, title, ingredients, instructions from recipies;'
+    cur = db.execute(sql_command)
+    recipies = cur.fetchall()
+
+    return render_template('recipe_list.html', recipies=recipies)
 
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
