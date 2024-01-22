@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for, g
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FileField
@@ -25,14 +24,6 @@ def close_db(error):
 
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
-
-
-# Dummy data for recipes
-recipes = [
-    {"title": "Pasta", "ingredients": "Water, Salt, Pasta", "instructions": "Boil water, add salt, cook pasta.", "image_path": "123.jpg"},
-    {"title": "Salad", "ingredients": "Lettuce, Tomatoes, Cucumber", "instructions": "Chop vegetables, mix in a bowl.", "image_path": None},
-    {"title": "Pizza", "ingredients": "Flour, Water, Tomato Sauce, Pepperoni, Cheese", "instructions": "Mix flour with water, spread sauce and add toppings.", "image_path": None},
-]
 
 class RecipeForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired("Enter recipe title")])
@@ -62,7 +53,6 @@ def add_recipe():
         ingredients = form.ingredients.data
         instructions = form.instructions.data
 
-        # Save the uploaded image
         image_path = None
         if form.image.data:
             image_path = save_image(form.image.data, title)
@@ -71,9 +61,6 @@ def add_recipe():
         sql_command = 'insert into recipies(title, ingredients, instructions) values(?, ?, ?)'
         db.execute(sql_command, [title, ingredients, instructions])
         db.commit()
-
-        #new_recipe = {"title": title, "ingredients": ingredients, "instructions": instructions, "image_path": image_path}
-        #recipes.append(new_recipe)
 
         return redirect(url_for('recipe_list'))
 
@@ -100,6 +87,17 @@ def about():
 @app.route('/faq')
 def faq():
     return render_template('faq.html', active_menu='other')
+
+@app.route('/recipe_delete/<int:recipe_id>')
+def recipe_delete(recipe_id):
+
+    db = get_db()
+    sql_command = 'delete from recipies where id = ?;'
+    db.execute(sql_command, [recipe_id])
+    db.commit()
+
+    return redirect(url_for('recipe_list'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -5,5 +5,27 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Instructions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipies %}
+            <tr>
+                <th scope="row">{{ recipe.title }}</th>
+                <td>{{ recipe.ingredients }}</td>
+                <td>{{ recipe.instructions }}</td>
+                <td>
+                    <a href="#" class="btn btn-primary btn-sm" role="button">Show Photo</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
