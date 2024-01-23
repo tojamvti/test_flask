@@ -2,12 +2,24 @@ The Recipe Book web application allows users to manage and explore various recip
 
 Functionality and Function Naming:
 
+get_db():
+
+    Description: Opens database if it wasn't open before
+
+close_db():
+
+    Description: After closing application ensures that database is closed if not it closes it
+
+index():
+
+    Description: Renders main paige displaying welcome message with photo.
+
 recipe_list():
 
-    Description: Renders the main page displaying a list of recipes.
+    Description: Renders Recipe List page displaying a list of recipes.
     Functionality:
     Retrieves all recipes from the database.
-    Organizes recipes into cards with a responsive layout.
+    Organizes recipes into table with show image, edit and delete option.
 
 add_recipe():
 
@@ -25,6 +37,48 @@ save_image(image, title):
     Generates a filename based on the title and saves the image in the "static/images/" folder.
     Returns the path to the saved image.
 
+best_recipe():
+
+    Description: Renders Best Recipe page.
+
+contact():
+
+    Description: Renders Contact page with form where user can input name, e-mail and message.
+    
+    Functionality: Form saves message into database.
+
+about():
+
+    Description: Renders About page.
+
+faq():
+
+    Description: Renders FAQ page.
+
+recipe_delete():
+
+    Description: Deletes recipe record from database.
+    
+    Functionality: Takes recipe_id which is uniqe id of recipe and deletes record from database with this exact id.
+
+about.html:
+
+    Description: Template for About page, that contains basic information about app.
+
+add_recipe.html:
+
+    Description: Template for Add Recipe page.
+    Includes a form for users to input recipe details.
+    Provides a button to go back to the main recipe list.
+
+base.html:
+
+    Description: Base template that other templates extend from.
+
+best_recipe.html:
+
+    Description: Template for Best Recipe page that  prints pizza recipe.
+
 recipe_list.html:
 
     Description: HTML template for rendering the main recipe list page.
@@ -32,14 +86,6 @@ recipe_list.html:
     Utilizes Jinja templating to dynamically display recipe details.
     Organizes recipes into a responsive layout with cards.
     Includes links for adding recipes and searching.
-
-add_recipe.html:
-
-    Description: HTML template for rendering the add recipe page.
-    Functionality:
-    Includes a form for users to input recipe details.
-    Utilizes Jinja templating for form rendering.
-    Provides a button to go back to the main recipe list.
 
 style.css:
 
