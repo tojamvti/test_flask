@@ -5,7 +5,7 @@ from wtforms.validators import InputRequired
 import sqlite3
 
 app_info = {
-    'db_file' : r"C:\Users\dashs\Flask\test_flask\data\recipies.db"
+    'db_file' : r"C:\Users\dashs\Flask\test_flask\data\recipes.db"
 }
 
 app = Flask(__name__)
@@ -58,7 +58,7 @@ def add_recipe():
             image_path = save_image(form.image.data, title)
 
         db = get_db()
-        sql_command = 'insert into recipies(title, ingredients, instructions) values(?, ?, ?)'
+        sql_command = 'insert into recipes(title, ingredients, instructions) values(?, ?, ?)'
         db.execute(sql_command, [title, ingredients, instructions])
         db.commit()
 
@@ -89,10 +89,14 @@ def contact():
     form = ContactForm()
 
     if form.validate_on_submit():
-        # Handle the form submission logic here
-        # Access form data using form.name.data, form.email.data, form.message.data
-        # Perform any necessary actions with the form data
+        name = form.name.data
+        email = form.email.data
+        message = form.message.data
 
+        db = get_db()
+        sql_command = 'insert into messages(name, email, message) values(?, ?, ?)'
+        db.execute(sql_command, [name, email, message])
+        db.commit()
         return render_template('thank_you.html')
 
     return render_template('contact.html', form=form)
