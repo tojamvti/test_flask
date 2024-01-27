@@ -13,7 +13,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="idDeleteMoadlBody">
-          <p>Are you sure?</p>
+          Are you sure?
         </div>
         <div class="modal-footer">
             <form action="" method="GET" id="confirmDeleteForm"
@@ -25,13 +25,13 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
     $(document).ready(function () {
         //aplied to all elements with ".delete-cofrim"
-        $('.delete-confirm').click(function (){
-            var desc = $(this).attr('data=desc');
+        $('.delete-confirm').click(function () {
+            var desc = $(this).attr('data-desc');
             var url = $(this).attr('data-url');
             $('#idDeleteModalBody').text(desc);
             $("#confirmDeleteForm").attr("action", url);
