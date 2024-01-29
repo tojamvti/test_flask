@@ -5,10 +5,12 @@ from wtforms.validators import InputRequired
 import sqlite3
 
 app_info = {
-    'db_file' : r"C:\Users\dashs\Flask\test_flask\data\recipes.db"
+    'db_file' : r"D:\Studia\Python\test_flask\data\recipes.db"
 }
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
+
+
 app.config['SECRET_KEY'] = 'your_secret_key'
 
 def get_db():
@@ -147,3 +149,4 @@ def recipe_edit(recipe_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+

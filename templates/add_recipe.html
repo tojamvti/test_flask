@@ -1,4 +1,4 @@
-<!-- templates/add_recipe.html -->
+<!-- add_recipe.html -->
 {% extends "base.html" %}
 
 {% block title %}
@@ -9,18 +9,20 @@
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='add_recipe_style.css') }}">
+    <script src="{{ url_for('static', filename='add_recipe.js') }}"></script>
+    
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <h1>Add Recipe</h1>
-        <HR>
-        <form method="post" enctype="multipart/form-data">
+        <hr>
+        <form method="post" enctype="multipart/form-data" id="recipeForm">
             {{ form.csrf_token }}
-            <label for="title">Title:</label>   {{ form.title }} <br/>
-            <label for="ingredients">Ingredients:</label>   {{ form.ingredients }} <br/>
-            <label for="instructions">Instructions:</label>    {{ form.instructions }} <br/>
-            <label for="image">Upload Image:</label>    {{ form.image }} <br/>
+            <label for="title">Title:</label> {{ form.title }} <br/>
+            <label for="ingredients">Ingredients:</label> {{ form.ingredients }} <br/>
+            <label for="instructions">Instructions:</label> {{ form.instructions }} <br/>
+            <label for="image">Upload Image:</label> {{ form.image }} <br/>
             <input type="submit" value="Add Recipe">
         </form>
         <a href="{{ url_for('recipe_list') }}" class="back-to-list-button">Back to Recipe List</a>
