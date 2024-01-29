@@ -58,7 +58,7 @@ def add_recipe():
             image_path = save_image(form.image.data, title)
 
         db = get_db()
-        sql_command = 'insert into recipes(title, ingredients, instructions) values(?, ?, ?)'
+        sql_command = 'insert into recipies(title, ingredients, instructions) values(?, ?, ?)'
         db.execute(sql_command, [title, ingredients, instructions])
         db.commit()
 
@@ -137,7 +137,7 @@ def recipe_edit(recipe_id):
                             title=?,
                             ingredients=?,
                             instructions=? 
-                        where id=?'''
+                        where id=?;'''
         db.execute(sql_command, [title, ingredients, instructions, recipe_id])
         db.commit()
 

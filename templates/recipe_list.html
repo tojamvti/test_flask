@@ -55,8 +55,12 @@
                 <th scope="row">{{ recipe.title }}</th>
                 <td>{{ recipe.ingredients }}</td>
                 <td>{{ recipe.instructions }}</td>
+                <td> <img src="{{ url_for('static', filename='images/'+recipe.title+'.jpg') }}"
+                    width = "600"
+                    height= auto
+                    alt="no picture" /> 
+                </td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-sm" role="button">Show Photo</a>
                     <a href="{{ url_for('recipe_edit', recipe_id = recipe.id) }}" class="btn btn-success btn-sm" role="button">Edit</a>
                     <a type="button" class="btn btn-danger btn-sm delete-confirm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                         data-desc="{{ 'Delete recipe for {}?'.format(recipe.title) }}"
