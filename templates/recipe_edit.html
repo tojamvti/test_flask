@@ -1,0 +1,26 @@
+<!-- templates/add_recipe.html -->
+{% extends "base.html" %}
+
+{% block title %}
+    Edit Recipe
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_recipe_style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Recipe</h1>
+        <HR>
+        <form method="post" enctype="multipart/form-data">
+            <label for="title">Title:</label>   {{ recipe.title }} <br/>
+            <label for="ingredients">Ingredients:</label>   {{ recipe.ingredients }} <br/>
+            <label for="instructions">Instructions:</label>    {{ recipe.instructions }} <br/>
+            <input type="submit" value="Edit Recipe">
+        </form>
+        <a href="{{ url_for('recipe_list') }}" class="back-to-list-button">Back to Recipe List</a>
+    </div>
+{% endblock %}

@@ -119,7 +119,30 @@ def recipe_delete(recipe_id):
 
     return redirect(url_for('recipe_list'))
 
+@app.route('/recipe_edit/<int:recipe_id>', methods=['GET', 'POST'])
+def recipe_edit(recipe_id):
+    form = RecipeForm()
+    db = get_db()
 
+    sql_statement = 'select id, title, ingredients, instructions from recipies where id=?;'
+    cur = db.execute(sql_statement, [recipe_id])
+    recipe = cur.fetchone()
+
+    if form.validate_on_submit():
+        title = form.title.data
+        ingredients = form.ingredients.data
+        instructions = form.instructions.data
+
+        sql_command = '''update recipies set 
+                            title=?,
+                            ingredients=?,
+                            instructions=? 
+                        where id=?'''
+        db.execute(sql_command, [title, ingredients, instructions, recipe_id])
+        db.commit()
+
+        return redirect(url_for('recipe_list'))
+    return render_template('recipe_edit.html', recipe=recipe, active_menu='recipe_list')
 
 
 if __name__ == '__main__':
